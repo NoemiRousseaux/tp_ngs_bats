@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd /home/rstudio/data/mydatalocal/tp_ngs_bats/Script
 
 #Quality test of sequences
 
