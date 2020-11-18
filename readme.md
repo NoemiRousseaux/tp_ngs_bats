@@ -12,15 +12,31 @@ htop (afficher les programmes en cours)
 ps (idem)
 kill identifiant (termine le programme vise)
 
-# Telechargement de donnees de sequencage = download
+# Telechargement de donnees de sequencage = downloaddonnees.sh
+Telecharge les donnees dans 1 fichier "donnees", il faut se connecter avec le username et le password connu
 
-# Controle qualite : fastqc
-Les fichiers rendus par fastqc sont dans un dossier fastqc_data
+# Controle qualite : programfastqc.sh
+Les fichiers rendus par fastqc sont dans un dossier fastqc_data. Il faut regarder les html. 
+Inserer un fichier image de donnees
 
-# Nettoyage des sequences : Trimmomatic
+# Nettoyage des sequences : programtrimmomatic.sh
+les donnees seront dans trimm_data.
+Parametres : Illuminaclip:path/adapt.fasta:2:30:10 Headcrop:9 Minlen: 100
+Le fichier adapt.fasta donne les séquences des adapteurs utilisés pour le sequencage à nettoyer du sequencage,2:30:10?
+Headcrop=9?, 
+Minlen=100, on elimine les reads plus petites que 100pdb.
 
-Illuminaclip:path/adapt.fasta:2:30:10 Headcrop:9 Minlen: 100
+# On rerun programfastqc.sh pour evaluer l'effet de trimmomatic
+Inserer image avec le resultat plus bo
 
-# Assemblage des sequencages : Trinity
+# Assemblage des sequencages : programtrinity.sh
 --seqType fq --max_memory 14G --left liste1  --right liste2 --CPU 4 --SS_lib_type RF --output path/dossier
 Attention liste1 et 2 doivent etre suite de nom uniquement separes par des virgules !
+
+#Transdecodeur
+
+# Creation d'une banque blast
+
+# Blast
+
+
