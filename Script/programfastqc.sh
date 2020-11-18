@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Quality test of sequences
+#Controle qualite des sequences
 
 # Dossier par defaut
 data="/home/rstudio/data/mydatalocal/data"
