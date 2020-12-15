@@ -18,5 +18,5 @@ reads=$data/"trinity_data"
 
 # Transdecodeur
 
-TransDecoder.LongOrfs -t $reads/Trinity_RF.fasta -S -O $transd
+TransDecoder.LongOrfs -t $reads/Trinity_RF.fasta --gene_trans_map $reads/"Trinity_RF.fasta.gene_trans_map" -S -O $transd
 TransDecoder.Predict -t $reads/Trinity_RF.fasta --single_best_only  -O $transd
