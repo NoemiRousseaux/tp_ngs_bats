@@ -9,6 +9,7 @@ mkdir -p $data
 cd $data
 
 gene=$1
+#le $1 permet d'appeler l'argument d'entree en premiere position
 requete_dir=$data"/ISG_bat/all_aln"
 requete=$requete_dir"/"$gene".fas"
 

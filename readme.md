@@ -21,10 +21,11 @@ Inserer un fichier image de donnees
 
 # Nettoyage des sequences : programtrimmomatic.sh
 Les donnees seront dans trimm_data.
-Parametres : Illuminaclip:path/adapt.fasta:2:30:10 Headcrop:9 Minlen: 100
-Le fichier adapt.fasta donne les séquences des adapteurs utilisés pour le sequencage à nettoyer du sequencage,2:30:10?
-Headcrop=9?, 
+Parametres : Illuminaclip:path/adapt.fasta:2:30:10 Headcrop:9 Minlen: 100 Trailing: 26
+Le fichier adapt.fasta donne les sequences des adapteurs utilises pour le sequencage a nettoyer du sequencage, 2:30:10 30 et 10 sont des paramètres de qualite, 2 c'est pour autoriser des appariements imparfait avec la seq de l'adaptateur. 
+Headcrop=9, on coupe les 9 premieres bases de chaque sequence, hexamer au debut du a la technique de manipulation
 Minlen=100, on elimine les reads plus petites que 100pdb.
+Trailing 26, on elimine les fragments dont le score de qualite est inf a 26. 
 
 # On rerun programfastqc.sh pour evaluer l'effet de trimmomatic
 Inserer image avec le resultat plus bo
@@ -50,7 +51,7 @@ blastn -db path/dossier -query path/fichier.fas -evalue 1e-20 -outfmt 6 -out pat
 blastdbcmd -entry path/fichier -db path/dossier -out tmp.fasta
 
 
-# PRANK
+# PRANK +trimal
 
 # Phyml
 
