@@ -22,7 +22,7 @@ Telecharge les donnees dans 1 fichier "donnees", il faut se connecter avec le us
 
 # Controle qualite : programfastqc.sh
 Les fichiers rendus par fastqc sont dans un dossier fastqc_data. Il faut regarder les fichier en .html. Rapport sous forme graphique de chaque reads. Très intuitif à comprendre pour chaque graphique. On montre ici 2 donnees d'analyse : la proportion relative de chaque base et le contenu en adaptateur. On voit que on a une plus forte proportion de G que des autres bases vers le debut de la sequence. On observe aussi la presence de l'adaptateur qui a servi au sequencage vers la fin du read. D'autres parametres sont aussi à corriger (qualite de la sequence au debut du read, etc). 
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image1.png)
+![GitHub Logo](Images/Image1.png)
 On peut donc utiliser un programme de nettoyage pour obtenir des donnees plus belles. 
 
 # Nettoyage des sequences : programtrimmomatic.sh
@@ -34,7 +34,7 @@ Minlen=100, on elimine les reads plus petites que 100pdb.
 Trailing 26, on elimine les fragments dont le score de qualite est inf a 26. 
 
 # On rerun programfastqc.sh pour evaluer l'effet de trimmomatic
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image2.png)
+![GitHub Logo](Images/Image2.png)
 
 # Assemblage des sequencages : programtrinity.sh
 Trinity est un ensemble de 3 programmes qui fonctionnent à la suite et rendent les donnees assemblees (Inchworm, Chrysalis et Butterfly). Trinity est robuste et precis, il travaille les donnees jusqu'a la moelle. 
@@ -62,10 +62,10 @@ blastn -db path/dossier -query path/fichier.fas -evalue 1e-20 -outfmt 6 -out pat
   --> valeur de evalue à decider, format de sortie 6 est tabulaire
 blastdbcmd -entry path/fichier -db path/dossier -out tmp.fasta
 Les fichiers de sorties sont composes d'une liste de sequence avec d'abbord les sequences d'autres chauve souris puis les reads trinity : 
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image3.png)
+![GitHub Logo](Images/Image3.png)
 
 Comparatif de ce que nous rend le blast pour quelques genes d'interet maximal.
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image4.png)
+![GitHub Logo](Images/Image4.png)
 
 
 # Alignement multi sequences : programprank.sh
@@ -78,8 +78,8 @@ F : gestion des gaps, apres une insertion il cherche pas a aligner aussi stricte
 
 Le programme utilise trimal en toute fin pour retourner des fichier en format phylip qui est le format requis pour l'utilisation de Phyml. 
 On peut visualiser l'alignement obtenu par Prank grace au logiciel Seaview sur nos ordinateurs personnels. 
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image5.png)
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image6.png)
+![GitHub Logo](Images/Image5.png)
+![GitHub Logo](Images/Image6.png)
 
 
 # Analyse phylogenetique et design des arbres : programphyml.sh
@@ -89,9 +89,9 @@ Attention ce programme fonctionne avec un argument d'entree : le nom du gene sur
 Parametres : -i file_name"_aln.best.phyX" -d nt -m HKY85 -a e -c 4 -s NNI -b -1
 -i : Sequences alignees au format phylip (trimAl), -d : Nucleotides -m : Choix d'un modele de substitution -a : Estimation du maximum de vraisemblance -s : Modele pour la construction de l’arbre, ici nearest-neighbor interchange (NNI), -b :  Test statistique pour les branches, ici -1 indique approximate likelihood-ratio test (aLRT)
 
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image7.png)
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image9.png)
-![GitHub Logo](/ifb/data/mydatalocal/tp_ngs_bats/Images/Image8.png)
+![GitHub Logo](Images/Image7.png)
+![GitHub Logo](Images/Image9.png)
+![GitHub Logo](Images/Image8.png)
 
 Pour SAMD9, on observe deux moities d'arbres bien symetriques avec les especes qui se repetent de chaque cote. Cela est caracteristique d'un evenement de duplication precedant la speciation des differentes chauves souris. Cependant, l'ancrage n'est pas bon au niveau de l'arbre superieur. En effet, on arrive en plein millieu du groupe des Myotis. Cela peut provenir d'une attraction des longues branches qu'il faudrait corriger. 
 BST2 montre 11 contigs trinity alors que aucune autre espece ne possede autant de copies du gene. On peut supposer qu'il y a une erreur dans l'assemblage des reads avec une surrepresentation de BST2. Pour contrer cela, on pourrait travailler avec des donnees de sequancages issus du genome et non du transcriptome. 
