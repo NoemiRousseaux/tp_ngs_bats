@@ -7,7 +7,7 @@ L'etude des chauves souris a montre qu'elles sont très sujettes à des infectio
 
 Le readme est organise par section avec a chaque fois le principe de la section + le nom du programme que nous avons ecrit afin de realiser ce principe.
 
-#Lancer un programme
+# Lancer un programme
 ls -l (voir les droits que l'on a sur le programme)
 chmod u+x (ajouter le droit de l'executer)
 ./program.sh (lancer simple)
@@ -35,6 +35,7 @@ Trailing 26, on elimine les fragments dont le score de qualite est inf a 26.
 
 # On rerun programfastqc.sh pour evaluer l'effet de trimmomatic
 ![GitHub Logo](Images/Image2.png)
+Les problemes observes avant sont resolus, on peut continuer l'analyse. 
 
 # Assemblage des sequencages : programtrinity.sh
 Trinity est un ensemble de 3 programmes qui fonctionnent à la suite et rendent les donnees assemblees (Inchworm, Chrysalis et Butterfly). Trinity est robuste et precis, il travaille les donnees jusqu'a la moelle. 
@@ -43,7 +44,7 @@ Attention liste1 et 2 doivent etre une suite de nom uniquement separes par des v
 
 On obtient en sortie 404732 transcripts. C'est assez consequent, tous ne doivent pas etre des sequences codantes d'interet. 
 
-#Detection des ORFs dans l'assemblage : programtransdecodeur.sh
+# Detection des ORFs dans l'assemblage : programtransdecodeur.sh
 Transdecodeur permet de detecter les ORFs dans les transcripts retournes par trinity. Il fonctionne en 2 temps : extraction des long ORFs puis selection du meilleur candidat a chaque fois. 
 Parametres : 
 LongOrfs : -t path/fichier.fasta --gene_trans_map path/fichier.fasta.gene_trans_map -S -O path/dossier
@@ -65,7 +66,7 @@ Les fichiers de sorties sont composes d'une liste de sequence avec d'abbord les 
 ![GitHub Logo](Images/Image3.png)
 
 Comparatif de ce que nous rend le blast pour quelques genes d'interet maximal.
-![GitHub Logo](Images/Image4.png)
+![GitHub Logo](Images/Image4.png){width=50%}
 
 
 # Alignement multi sequences : programprank.sh
@@ -78,7 +79,8 @@ F : gestion des gaps, apres une insertion il cherche pas a aligner aussi stricte
 
 Le programme utilise trimal en toute fin pour retourner des fichier en format phylip qui est le format requis pour l'utilisation de Phyml. 
 On peut visualiser l'alignement obtenu par Prank grace au logiciel Seaview sur nos ordinateurs personnels. 
-![GitHub Logo](Images/Image5.png)
+
+![GitHub Logo](Images/Image5.png){width=20%}
 ![GitHub Logo](Images/Image6.png)
 
 
@@ -89,9 +91,9 @@ Attention ce programme fonctionne avec un argument d'entree : le nom du gene sur
 Parametres : -i file_name"_aln.best.phyX" -d nt -m HKY85 -a e -c 4 -s NNI -b -1
 -i : Sequences alignees au format phylip (trimAl), -d : Nucleotides -m : Choix d'un modele de substitution -a : Estimation du maximum de vraisemblance -s : Modele pour la construction de l’arbre, ici nearest-neighbor interchange (NNI), -b :  Test statistique pour les branches, ici -1 indique approximate likelihood-ratio test (aLRT)
 
-![GitHub Logo](Images/Image7.png)
-![GitHub Logo](Images/Image9.png)
-![GitHub Logo](Images/Image8.png)
+![GitHub Logo](Images/Image7.png){width=50%}
+![GitHub Logo](Images/Image9.png){width=50%}
+![GitHub Logo](Images/Image8.png){width=50%}
 
 Pour SAMD9, on observe deux moities d'arbres bien symetriques avec les especes qui se repetent de chaque cote. Cela est caracteristique d'un evenement de duplication precedant la speciation des differentes chauves souris. Cependant, l'ancrage n'est pas bon au niveau de l'arbre superieur. En effet, on arrive en plein millieu du groupe des Myotis. Cela peut provenir d'une attraction des longues branches qu'il faudrait corriger. 
 BST2 montre 11 contigs trinity alors que aucune autre espece ne possede autant de copies du gene. On peut supposer qu'il y a une erreur dans l'assemblage des reads avec une surrepresentation de BST2. Pour contrer cela, on pourrait travailler avec des donnees de sequancages issus du genome et non du transcriptome. 
